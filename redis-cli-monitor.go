@@ -14,8 +14,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/essentialkaos/ek/arg"
-	"github.com/essentialkaos/ek/usage"
+	"pkg.re/essentialkaos/ek.v1/arg"
+	"pkg.re/essentialkaos/ek.v1/usage"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -120,7 +120,7 @@ func showUsage() {
 func showAbout() {
 	about := &usage.About{
 		App:     "Redis CLI Monitor",
-		Version: "1.0.2",
+		Version: "1.0.3",
 		Desc:    "Tiny redis client for renamed MONITOR commands",
 		Year:    2006,
 		Owner:   "ESSENTIAL KAOS",

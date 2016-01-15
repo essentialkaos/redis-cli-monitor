@@ -8,6 +8,7 @@ go:
 os:
   - linux
   - osx
+  - freebsd
 
 sudo: false
 

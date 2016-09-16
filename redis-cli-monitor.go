@@ -2,7 +2,7 @@ package main
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                    //
-//                     Copyright (c) 2009-2015 Essential Kaos                         //
+//                     Copyright (c) 2009-2016 Essential Kaos                         //
 //      Essential Kaos Open Source License <http://essentialkaos.com/ekol?en>         //
 //                                                                                    //
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -14,8 +14,8 @@ import (
 	"os"
 	"time"
 
-	"pkg.re/essentialkaos/ek.v1/arg"
-	"pkg.re/essentialkaos/ek.v1/usage"
+	"pkg.re/essentialkaos/ek.v3/arg"
+	"pkg.re/essentialkaos/ek.v3/usage"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -31,7 +31,7 @@ const (
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
-var argList map[string]*arg.V = map[string]*arg.V{
+var argMap = arg.Map{
 	ARG_HOST:    &arg.V{Value: "127.0.0.1"},
 	ARG_PORT:    &arg.V{Value: "6379"},
 	ARG_TIMEOUT: &arg.V{Type: arg.INT, Value: 3, Min: 1, Max: 300},
@@ -67,7 +67,10 @@ func main() {
 }
 
 func connect(cmd string) {
-	conn, err := net.DialTimeout("tcp", arg.GetS(ARG_HOST)+":"+arg.GetS(ARG_PORT), time.Second*time.Duration(arg.GetI(ARG_TIMEOUT)))
+	host := arg.GetS(ARG_HOST) + ":" + arg.GetS(ARG_PORT)
+	timeout := time.Second * time.Duration(arg.GetI(ARG_TIMEOUT))
+
+	conn, err := net.DialTimeout("tcp", host, timeout)
 
 	if err != nil {
 		fmt.Println(err.Error())
@@ -120,7 +123,7 @@ func showUsage() {
 func showAbout() {
 	about := &usage.About{
 		App:     "Redis CLI Monitor",
-		Version: "1.0.3",
+		Version: "1.0.4",
 		Desc:    "Tiny redis client for renamed MONITOR commands",
 		Year:    2006,
 		Owner:   "ESSENTIAL KAOS",

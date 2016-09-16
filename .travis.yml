@@ -12,7 +12,7 @@ os:
 sudo: false
 
 before_install:
-  - go get pkg.re/essentialkaos/ek.v1
+  - go get pkg.re/essentialkaos/ek.v3
 
 script:
   - go build redis-cli-monitor.go

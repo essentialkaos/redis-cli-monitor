@@ -43,7 +43,7 @@ var argMap = arg.Map{
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 func main() {
-	args, errs := arg.Parse(argList)
+	args, errs := arg.Parse(argMap)
 
 	if len(errs) != 0 {
 		for _, err := range errs {
@@ -105,7 +105,7 @@ func connect(cmd string) {
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 func showUsage() {
-	info := usage.NewInfo("redis-cli-monitor", "command-name")
+	info := usage.NewInfo("", "command-name")
 
 	info.AddOption(ARG_HOST, "Server hostname", "ip/host")
 	info.AddOption(ARG_PORT, "Server port", "port")

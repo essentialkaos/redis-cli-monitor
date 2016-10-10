@@ -14,8 +14,8 @@ import (
 	"os"
 	"time"
 
-	"pkg.re/essentialkaos/ek.v3/arg"
-	"pkg.re/essentialkaos/ek.v3/usage"
+	"pkg.re/essentialkaos/ek.v5/arg"
+	"pkg.re/essentialkaos/ek.v5/usage"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -114,8 +114,15 @@ func showUsage() {
 	info.AddOption(ARG_HELP, "Show this help message")
 	info.AddOption(ARG_VER, "Show version")
 
-	info.AddExample("-h 192.168.0.123 -p 6821 -t 15")
-	info.AddExample("-p 12345 -a MySuppaPassword1234")
+	info.AddExample(
+		"-h 192.168.0.123 -p 6821 -t 15 RENAMED_MONITOR",
+		"Execute \"RENAMED_MONITOR\" command on 192.168.0.123:6821 with 15 sec timeout",
+	)
+
+	info.AddExample(
+		"-p 12345 -a MySuppaPassword1234 RENAMED_MONITOR",
+		"Execute \"RENAMED_MONITOR\" command on 127.0.0.1:12345 with password \"MySuppaPassword1234\"",
+	)
 
 	info.Render()
 }
@@ -123,7 +130,7 @@ func showUsage() {
 func showAbout() {
 	about := &usage.About{
 		App:     "Redis CLI Monitor",
-		Version: "1.0.4",
+		Version: "1.0.5",
 		Desc:    "Tiny redis client for renamed MONITOR commands",
 		Year:    2006,
 		Owner:   "ESSENTIAL KAOS",

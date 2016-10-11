@@ -22,7 +22,7 @@ Options
   --help, -h                 Show this help message
   --version, -v              Show version
 
-Examples:
+Examples
 
   redis-cli-monitor -h 192.168.0.123 -p 6821 -t 15 RENAMED_MONITOR
   Execute "RENAMED_MONITOR" command on 192.168.0.123:6821 with 15 sec timeout

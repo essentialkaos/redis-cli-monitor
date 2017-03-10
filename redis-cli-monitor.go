@@ -2,8 +2,8 @@ package main
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                    //
-//                     Copyright (c) 2009-2016 Essential Kaos                         //
-//      Essential Kaos Open Source License <http://essentialkaos.com/ekol?en>         //
+//                     Copyright (c) 2009-2017 ESSENTIAL KAOS                         //
+//        Essential Kaos Open Source License <https://essentialkaos.com/ekol>         //
 //                                                                                    //
 // ////////////////////////////////////////////////////////////////////////////////// //
 
@@ -14,11 +14,17 @@ import (
 	"os"
 	"time"
 
-	"pkg.re/essentialkaos/ek.v5/arg"
-	"pkg.re/essentialkaos/ek.v5/usage"
+	"pkg.re/essentialkaos/ek.v7/arg"
+	"pkg.re/essentialkaos/ek.v7/usage"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
+
+const (
+	APP  = "Redis CLI Monitor"
+	VER  = "1.1.0"
+	DESC = "Tiny redis client for renamed MONITOR commands"
+)
 
 const (
 	ARG_HOST    = "H:host"
@@ -32,12 +38,12 @@ const (
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 var argMap = arg.Map{
-	ARG_HOST:    &arg.V{Value: "127.0.0.1"},
-	ARG_PORT:    &arg.V{Value: "6379"},
-	ARG_TIMEOUT: &arg.V{Type: arg.INT, Value: 3, Min: 1, Max: 300},
-	ARG_AUTH:    &arg.V{},
-	ARG_HELP:    &arg.V{Type: arg.BOOL, Alias: "u:usage"},
-	ARG_VER:     &arg.V{Type: arg.BOOL, Alias: "ver"},
+	ARG_HOST:    {Value: "127.0.0.1"},
+	ARG_PORT:    {Value: "6379"},
+	ARG_TIMEOUT: {Type: arg.INT, Value: 3, Min: 1, Max: 300},
+	ARG_AUTH:    {},
+	ARG_HELP:    {Type: arg.BOOL, Alias: "u:usage"},
+	ARG_VER:     {Type: arg.BOOL, Alias: "ver"},
 }
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -129,12 +135,12 @@ func showUsage() {
 
 func showAbout() {
 	about := &usage.About{
-		App:     "Redis CLI Monitor",
-		Version: "1.0.5",
-		Desc:    "Tiny redis client for renamed MONITOR commands",
+		App:     APP,
+		Version: VER,
+		Desc:    DESC,
 		Year:    2006,
 		Owner:   "ESSENTIAL KAOS",
-		License: "Essential Kaos Open Source License <https://essentialkaos.com/ekol?en>",
+		License: "Essential Kaos Open Source License <https://essentialkaos.com/ekol>",
 	}
 
 	about.Render()

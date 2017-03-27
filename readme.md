@@ -4,9 +4,23 @@ Tiny redis client for renamed MONITOR commands.
 
 ### Installation
 
-````
+Before the initial install allows git to use redirects for [pkg.re](https://github.com/essentialkaos/pkgre) service (reason why you should do this described [here](https://github.com/essentialkaos/pkgre#git-support)):
+
+```
+git config --global http.https://pkg.re.followRedirects true
+```
+
+To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.6+ workspace ([instructions](https://golang.org/doc/install)), then:
+
+```
 go get github.com/essentialkaos/redis-cli-monitor
-````
+```
+
+If you want to update `redis-cli-monitor` to latest stable release, do:
+
+```
+go get -u github.com/essentialkaos/redis-cli-monitor
+```
 
 ### Usage
 

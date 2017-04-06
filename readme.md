@@ -1,8 +1,10 @@
-## Redis CLI Monitor
+## Redis CLI Monitor [![Build Status](https://travis-ci.org/essentialkaos/redis-cli-monitor.svg?branch=master)](https://travis-ci.org/essentialkaos/redis-cli-monitor) [![License](https://gh.kaos.io/ekol.svg)](https://essentialkaos.com/ekol)
 
 Tiny redis client for renamed MONITOR commands.
 
 ### Installation
+
+#### From source
 
 Before the initial install allows git to use redirects for [pkg.re](https://github.com/essentialkaos/pkgre) service (reason why you should do this described [here](https://github.com/essentialkaos/pkgre#git-support)):
 
@@ -21,6 +23,10 @@ If you want to update `redis-cli-monitor` to latest stable release, do:
 ```
 go get -u github.com/essentialkaos/redis-cli-monitor
 ```
+
+#### Prebuilt binaries
+
+You can download prebuilt binaries for Linux and OS X from [EK Apps Repository](https://apps.kaos.io/redis-cli-monitor/latest).
 
 ### Usage
 
@@ -45,10 +51,6 @@ Examples
   Execute "RENAMED_MONITOR" command on 127.0.0.1:12345 with password "MySuppaPassword1234"
 
 ```
-
-### Prebuilt binaries
-
-You can download prebuilt binaries for Linux and OS X from [EK Apps Repository](https://apps.kaos.io/redis-cli-monitor/).
 
 ### Build Status
 

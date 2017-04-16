@@ -14,15 +14,15 @@ import (
 	"os"
 	"time"
 
-	"pkg.re/essentialkaos/ek.v7/arg"
-	"pkg.re/essentialkaos/ek.v7/usage"
+	"pkg.re/essentialkaos/ek.v8/arg"
+	"pkg.re/essentialkaos/ek.v8/usage"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "1.1.0"
+	VER  = "1.2.0"
 	DESC = "Tiny redis client for renamed MONITOR commands"
 )
 

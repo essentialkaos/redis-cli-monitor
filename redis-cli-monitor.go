@@ -14,42 +14,43 @@ import (
 	"os"
 	"time"
 
-	"pkg.re/essentialkaos/ek.v8/arg"
-	"pkg.re/essentialkaos/ek.v8/usage"
+	"pkg.re/essentialkaos/ek.v9/options"
+	"pkg.re/essentialkaos/ek.v9/usage"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "1.2.0"
+	VER  = "1.3.0"
 	DESC = "Tiny redis client for renamed MONITOR commands"
 )
 
 const (
-	ARG_HOST    = "H:host"
-	ARG_PORT    = "p:port"
-	ARG_AUTH    = "a:password"
-	ARG_TIMEOUT = "t:timeout"
-	ARG_HELP    = "h:help"
-	ARG_VER     = "v:version"
+	OPT_HOST    = "H:host"
+	OPT_PORT    = "p:port"
+	OPT_AUTH    = "a:password"
+	OPT_TIMEOUT = "t:timeout"
+	OPT_HELP    = "h:help"
+	OPT_VER     = "v:version"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
-var argMap = arg.Map{
-	ARG_HOST:    {Value: "127.0.0.1"},
-	ARG_PORT:    {Value: "6379"},
-	ARG_TIMEOUT: {Type: arg.INT, Value: 3, Min: 1, Max: 300},
-	ARG_AUTH:    {},
-	ARG_HELP:    {Type: arg.BOOL, Alias: "u:usage"},
-	ARG_VER:     {Type: arg.BOOL, Alias: "ver"},
+var optMap = options.Map{
+	OPT_HOST:    {Value: "127.0.0.1"},
+	OPT_PORT:    {Value: "6379"},
+	OPT_TIMEOUT: {Type: options.INT, Value: 3, Min: 1, Max: 300},
+	OPT_AUTH:    {},
+	OPT_HELP:    {Type: options.BOOL, Alias: "u:usage"},
+	OPT_VER:     {Type: options.BOOL, Alias: "ver"},
 }
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
+// main is main function
 func main() {
-	args, errs := arg.Parse(argMap)
+	args, errs := options.Parse(optMap)
 
 	if len(errs) != 0 {
 		for _, err := range errs {
@@ -59,12 +60,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	if arg.GetB(ARG_VER) == true {
+	if options.GetB(OPT_VER) == true {
 		showAbout()
 		return
 	}
 
-	if arg.GetB(ARG_HELP) == true || len(args) == 0 {
+	if options.GetB(OPT_HELP) == true || len(args) == 0 {
 		showUsage()
 		return
 	}
@@ -72,9 +73,10 @@ func main() {
 	connect(args[0])
 }
 
+// connect connect to Redis and print data
 func connect(cmd string) {
-	host := arg.GetS(ARG_HOST) + ":" + arg.GetS(ARG_PORT)
-	timeout := time.Second * time.Duration(arg.GetI(ARG_TIMEOUT))
+	host := options.GetS(OPT_HOST) + ":" + options.GetS(OPT_PORT)
+	timeout := time.Second * time.Duration(options.GetI(OPT_TIMEOUT))
 
 	conn, err := net.DialTimeout("tcp", host, timeout)
 
@@ -85,8 +87,8 @@ func connect(cmd string) {
 
 	defer conn.Close()
 
-	if arg.GetS(ARG_AUTH) != "" {
-		conn.Write([]byte("AUTH " + arg.GetS(ARG_AUTH) + "\n"))
+	if options.GetS(OPT_AUTH) != "" {
+		conn.Write([]byte("AUTH " + options.GetS(OPT_AUTH) + "\n"))
 	}
 
 	conn.Write([]byte(cmd + "\n"))
@@ -110,15 +112,16 @@ func connect(cmd string) {
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
+// showUsage print usage info
 func showUsage() {
 	info := usage.NewInfo("", "command-name")
 
-	info.AddOption(ARG_HOST, "Server hostname", "ip/host")
-	info.AddOption(ARG_PORT, "Server port", "port")
-	info.AddOption(ARG_AUTH, "Password to use when connecting to the server", "password")
-	info.AddOption(ARG_TIMEOUT, "Connection timeout in seconds", "1-300")
-	info.AddOption(ARG_HELP, "Show this help message")
-	info.AddOption(ARG_VER, "Show version")
+	info.AddOption(OPT_HOST, "Server hostname", "ip/host")
+	info.AddOption(OPT_PORT, "Server port", "port")
+	info.AddOption(OPT_AUTH, "Password to use when connecting to the server", "password")
+	info.AddOption(OPT_TIMEOUT, "Connection timeout in seconds", "1-300")
+	info.AddOption(OPT_HELP, "Show this help message")
+	info.AddOption(OPT_VER, "Show version")
 
 	info.AddExample(
 		"-h 192.168.0.123 -p 6821 -t 15 RENAMED_MONITOR",
@@ -133,6 +136,7 @@ func showUsage() {
 	info.Render()
 }
 
+// showAbout print info about version
 func showAbout() {
 	about := &usage.About{
 		App:     APP,

@@ -10,7 +10,7 @@
 
 Summary:         Tiny redis client for renamed MONITOR commands
 Name:            redis-cli-monitor
-Version:         1.2.0
+Version:         1.3.0
 Release:         0%{?dist}
 Group:           Applications/System
 License:         EKOL
@@ -20,7 +20,7 @@ Source0:         https://source.kaos.io/%{name}/%{name}-%{version}.tar.bz2
 
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:   golang >= 1.7
+BuildRequires:   golang >= 1.8
 
 Provides:        %{name} = %{version}-%{release}
 
@@ -57,6 +57,9 @@ rm -rf %{buildroot}
 ###############################################################################
 
 %changelog
+* Fri May 26 2017 Anton Novojilov <andy@essentialkaos.com> - 1.3.0-0
+- ek package updated to v9
+
 * Sun Apr 16 2017 Anton Novojilov <andy@essentialkaos.com> - 1.2.0-0
 - ek package updated to v8
 

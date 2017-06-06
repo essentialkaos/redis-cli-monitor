@@ -28,23 +28,25 @@ const (
 )
 
 const (
-	OPT_HOST    = "H:host"
-	OPT_PORT    = "p:port"
-	OPT_AUTH    = "a:password"
-	OPT_TIMEOUT = "t:timeout"
-	OPT_HELP    = "h:help"
-	OPT_VER     = "v:version"
+	OPT_HOST     = "H:host"
+	OPT_PORT     = "P:port"
+	OPT_AUTH     = "a:password"
+	OPT_TIMEOUT  = "t:timeout"
+	OPT_NO_COLOR = "nc:no-color"
+	OPT_HELP     = "h:help"
+	OPT_VER      = "v:version"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 var optMap = options.Map{
-	OPT_HOST:    {Value: "127.0.0.1"},
-	OPT_PORT:    {Value: "6379"},
-	OPT_TIMEOUT: {Type: options.INT, Value: 3, Min: 1, Max: 300},
-	OPT_AUTH:    {},
-	OPT_HELP:    {Type: options.BOOL, Alias: "u:usage"},
-	OPT_VER:     {Type: options.BOOL, Alias: "ver"},
+	OPT_HOST:     {Value: "127.0.0.1"},
+	OPT_PORT:     {Value: "6379"},
+	OPT_TIMEOUT:  {Type: options.INT, Value: 3, Min: 1, Max: 300},
+	OPT_AUTH:     {},
+	OPT_NO_COLOR: {Type: options.BOOL},
+	OPT_HELP:     {Type: options.BOOL, Alias: "u:usage"},
+	OPT_VER:      {Type: options.BOOL, Alias: "ver"},
 }
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -61,12 +63,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	if options.GetB(OPT_VER) == true {
+	if options.GetB(OPT_NO_COLOR) {
+		fmtc.DisableColors = true
+	}
+
+	if options.GetB(OPT_VER) {
 		showAbout()
 		return
 	}
 
-	if options.GetB(OPT_HELP) == true || len(args) == 0 {
+	if options.GetB(OPT_HELP) || len(args) == 0 {
 		showUsage()
 		return
 	}
@@ -124,7 +130,7 @@ func printError(f string, a ...interface{}) {
 func showUsage() {
 	info := usage.NewInfo("", "command-name")
 
-	info.AddOption(OPT_HOST, "Server hostname", "ip/host")
+	info.AddOption(OPT_HOST, "Server hostname", "host")
 	info.AddOption(OPT_PORT, "Server port", "port")
 	info.AddOption(OPT_AUTH, "Password to use when connecting to the server", "password")
 	info.AddOption(OPT_TIMEOUT, "Connection timeout in seconds", "1-300")
@@ -132,12 +138,12 @@ func showUsage() {
 	info.AddOption(OPT_VER, "Show version")
 
 	info.AddExample(
-		"-h 192.168.0.123 -p 6821 -t 15 RENAMED_MONITOR",
+		"--host 192.168.0.123 --password 6821 --timeout 15 RENAMED_MONITOR",
 		"Execute \"RENAMED_MONITOR\" command on 192.168.0.123:6821 with 15 sec timeout",
 	)
 
 	info.AddExample(
-		"-p 12345 -a MySuppaPassword1234 RENAMED_MONITOR",
+		"-P 12345 -a MySuppaPassword1234 RENAMED_MONITOR",
 		"Execute \"RENAMED_MONITOR\" command on 127.0.0.1:12345 with password \"MySuppaPassword1234\"",
 	)
 

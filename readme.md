@@ -53,6 +53,7 @@ Options
   --port, -P port            Server port
   --password, -a password    Password to use when connecting to the server
   --timeout, -t 1-300        Connection timeout in seconds
+  --no-color, -nc            Disable colors in output
   --help, -h                 Show this help message
   --version, -v              Show version
 

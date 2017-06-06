@@ -1,6 +1,6 @@
 ## Redis CLI Monitor [![Build Status](https://travis-ci.org/essentialkaos/redis-cli-monitor.svg?branch=master)](https://travis-ci.org/essentialkaos/redis-cli-monitor) [![Go Report Card](https://goreportcard.com/badge/github.com/essentialkaos/redis-cli-monitor)](https://goreportcard.com/report/github.com/essentialkaos/redis-cli-monitor) [![License](https://gh.kaos.io/ekol.svg)](https://essentialkaos.com/ekol)
 
-Tiny redis client for renamed MONITOR commands.
+Tiny Redis client for renamed MONITOR commands.
 
 ### Installation
 

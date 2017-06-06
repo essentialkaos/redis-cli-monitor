@@ -8,7 +8,7 @@
 
 ###############################################################################
 
-Summary:         Tiny redis client for renamed MONITOR commands
+Summary:         Tiny Redis client for renamed MONITOR commands
 Name:            redis-cli-monitor
 Version:         1.4.0
 Release:         0%{?dist}
@@ -27,7 +27,7 @@ Provides:        %{name} = %{version}-%{release}
 ###############################################################################
 
 %description
-Tiny redis client for renamed MONITOR commands.
+Tiny Redis client for renamed MONITOR commands.
 
 ###############################################################################
 

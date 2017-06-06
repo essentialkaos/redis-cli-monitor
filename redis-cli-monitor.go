@@ -24,7 +24,7 @@ import (
 const (
 	APP  = "Redis CLI Monitor"
 	VER  = "1.4.0"
-	DESC = "Tiny redis client for renamed MONITOR commands"
+	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
 const (

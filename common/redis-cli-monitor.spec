@@ -10,7 +10,7 @@
 
 Summary:         Tiny redis client for renamed MONITOR commands
 Name:            redis-cli-monitor
-Version:         1.3.0
+Version:         1.4.0
 Release:         0%{?dist}
 Group:           Applications/System
 License:         EKOL
@@ -57,6 +57,9 @@ rm -rf %{buildroot}
 ###############################################################################
 
 %changelog
+* Wed Jun 07 2017 Anton Novojilov <andy@essentialkaos.com> - 1.4.0-0
+- Minor improvements
+
 * Fri May 26 2017 Anton Novojilov <andy@essentialkaos.com> - 1.3.0-0
 - ek package updated to v9
 

@@ -14,6 +14,7 @@ import (
 	"os"
 	"time"
 
+	"pkg.re/essentialkaos/ek.v9/fmtc"
 	"pkg.re/essentialkaos/ek.v9/options"
 	"pkg.re/essentialkaos/ek.v9/usage"
 )
@@ -22,7 +23,7 @@ import (
 
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "1.3.0"
+	VER  = "1.4.0"
 	DESC = "Tiny redis client for renamed MONITOR commands"
 )
 
@@ -54,7 +55,7 @@ func main() {
 
 	if len(errs) != 0 {
 		for _, err := range errs {
-			fmt.Println(err.Error())
+			printError(err.Error())
 		}
 
 		os.Exit(1)
@@ -81,7 +82,7 @@ func connect(cmd string) {
 	conn, err := net.DialTimeout("tcp", host, timeout)
 
 	if err != nil {
-		fmt.Println(err.Error())
+		printError(err.Error())
 		os.Exit(1)
 	}
 
@@ -96,6 +97,7 @@ func connect(cmd string) {
 
 	for {
 		str, err := connbuf.ReadString('\n')
+
 		if len(str) > 0 {
 			if str == "+OK\r\n" {
 				continue
@@ -103,11 +105,17 @@ func connect(cmd string) {
 
 			fmt.Printf("%s", str[1:])
 		}
+
 		if err != nil {
-			fmt.Println(err.Error())
+			printError(err.Error())
 			os.Exit(1)
 		}
 	}
+}
+
+// printError prints error message to console
+func printError(f string, a ...interface{}) {
+	fmtc.Fprintf(os.Stderr, "{r}"+f+"{!}\n", a...)
 }
 
 // ////////////////////////////////////////////////////////////////////////////////// //

@@ -14,7 +14,7 @@ Version:         1.4.0
 Release:         0%{?dist}
 Group:           Applications/System
 License:         EKOL
-URL:             http://essentialkaos.com
+URL:             https://github.com/essentialkaos/redis-cli-monitor
 
 Source0:         https://source.kaos.io/%{name}/%{name}-%{version}.tar.bz2
 

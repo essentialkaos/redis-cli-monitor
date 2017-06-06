@@ -130,10 +130,10 @@ func printError(f string, a ...interface{}) {
 func showUsage() {
 	info := usage.NewInfo("", "command-name")
 
-	info.AddOption(OPT_HOST, "Server hostname", "host")
-	info.AddOption(OPT_PORT, "Server port", "port")
+	info.AddOption(OPT_HOST, "Server hostname {s-}(127.0.0.1 by default){!}", "ip/host")
+	info.AddOption(OPT_PORT, "Server port {s-}(6379 by default){!}", "port")
 	info.AddOption(OPT_AUTH, "Password to use when connecting to the server", "password")
-	info.AddOption(OPT_TIMEOUT, "Connection timeout in seconds", "1-300")
+	info.AddOption(OPT_TIMEOUT, "Connection timeout in seconds {s-}(3 by default){!}", "1-300")
 	info.AddOption(OPT_NO_COLOR, "Disable colors in output")
 	info.AddOption(OPT_HELP, "Show this help message")
 	info.AddOption(OPT_VER, "Show version")

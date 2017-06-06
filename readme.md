@@ -49,10 +49,10 @@ Usage: redis-cli-monitor {options} command-name
 
 Options
 
-  --host, -H host            Server hostname
-  --port, -P port            Server port
+  --host, -H ip/host         Server hostname (127.0.0.1 by default)
+  --port, -P port            Server port (6379 by default)
   --password, -a password    Password to use when connecting to the server
-  --timeout, -t 1-300        Connection timeout in seconds
+  --timeout, -t 1-300        Connection timeout in seconds (3 by default)
   --no-color, -nc            Disable colors in output
   --help, -h                 Show this help message
   --version, -v              Show version

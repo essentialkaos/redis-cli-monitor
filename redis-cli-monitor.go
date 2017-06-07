@@ -14,6 +14,7 @@ import (
 	"os"
 	"time"
 
+	"pkg.re/essentialkaos/ek.v9/fmtc"
 	"pkg.re/essentialkaos/ek.v9/options"
 	"pkg.re/essentialkaos/ek.v9/usage"
 )
@@ -22,28 +23,30 @@ import (
 
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "1.3.0"
-	DESC = "Tiny redis client for renamed MONITOR commands"
+	VER  = "1.4.0"
+	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
 const (
-	OPT_HOST    = "H:host"
-	OPT_PORT    = "p:port"
-	OPT_AUTH    = "a:password"
-	OPT_TIMEOUT = "t:timeout"
-	OPT_HELP    = "h:help"
-	OPT_VER     = "v:version"
+	OPT_HOST     = "H:host"
+	OPT_PORT     = "P:port"
+	OPT_AUTH     = "a:password"
+	OPT_TIMEOUT  = "t:timeout"
+	OPT_NO_COLOR = "nc:no-color"
+	OPT_HELP     = "h:help"
+	OPT_VER      = "v:version"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 var optMap = options.Map{
-	OPT_HOST:    {Value: "127.0.0.1"},
-	OPT_PORT:    {Value: "6379"},
-	OPT_TIMEOUT: {Type: options.INT, Value: 3, Min: 1, Max: 300},
-	OPT_AUTH:    {},
-	OPT_HELP:    {Type: options.BOOL, Alias: "u:usage"},
-	OPT_VER:     {Type: options.BOOL, Alias: "ver"},
+	OPT_HOST:     {Value: "127.0.0.1"},
+	OPT_PORT:     {Value: "6379"},
+	OPT_TIMEOUT:  {Type: options.INT, Value: 3, Min: 1, Max: 300},
+	OPT_AUTH:     {},
+	OPT_NO_COLOR: {Type: options.BOOL},
+	OPT_HELP:     {Type: options.BOOL, Alias: "u:usage"},
+	OPT_VER:      {Type: options.BOOL, Alias: "ver"},
 }
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -54,18 +57,22 @@ func main() {
 
 	if len(errs) != 0 {
 		for _, err := range errs {
-			fmt.Println(err.Error())
+			printError(err.Error())
 		}
 
 		os.Exit(1)
 	}
 
-	if options.GetB(OPT_VER) == true {
+	if options.GetB(OPT_NO_COLOR) {
+		fmtc.DisableColors = true
+	}
+
+	if options.GetB(OPT_VER) {
 		showAbout()
 		return
 	}
 
-	if options.GetB(OPT_HELP) == true || len(args) == 0 {
+	if options.GetB(OPT_HELP) || len(args) == 0 {
 		showUsage()
 		return
 	}
@@ -81,7 +88,7 @@ func connect(cmd string) {
 	conn, err := net.DialTimeout("tcp", host, timeout)
 
 	if err != nil {
-		fmt.Println(err.Error())
+		printError(err.Error())
 		os.Exit(1)
 	}
 
@@ -96,6 +103,7 @@ func connect(cmd string) {
 
 	for {
 		str, err := connbuf.ReadString('\n')
+
 		if len(str) > 0 {
 			if str == "+OK\r\n" {
 				continue
@@ -103,11 +111,17 @@ func connect(cmd string) {
 
 			fmt.Printf("%s", str[1:])
 		}
+
 		if err != nil {
-			fmt.Println(err.Error())
+			printError(err.Error())
 			os.Exit(1)
 		}
 	}
+}
+
+// printError prints error message to console
+func printError(f string, a ...interface{}) {
+	fmtc.Fprintf(os.Stderr, "{r}"+f+"{!}\n", a...)
 }
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -116,20 +130,21 @@ func connect(cmd string) {
 func showUsage() {
 	info := usage.NewInfo("", "command-name")
 
-	info.AddOption(OPT_HOST, "Server hostname", "ip/host")
-	info.AddOption(OPT_PORT, "Server port", "port")
+	info.AddOption(OPT_HOST, "Server hostname {s-}(127.0.0.1 by default){!}", "ip/host")
+	info.AddOption(OPT_PORT, "Server port {s-}(6379 by default){!}", "port")
 	info.AddOption(OPT_AUTH, "Password to use when connecting to the server", "password")
-	info.AddOption(OPT_TIMEOUT, "Connection timeout in seconds", "1-300")
+	info.AddOption(OPT_TIMEOUT, "Connection timeout in seconds {s-}(3 by default){!}", "1-300")
+	info.AddOption(OPT_NO_COLOR, "Disable colors in output")
 	info.AddOption(OPT_HELP, "Show this help message")
 	info.AddOption(OPT_VER, "Show version")
 
 	info.AddExample(
-		"-h 192.168.0.123 -p 6821 -t 15 RENAMED_MONITOR",
+		"--host 192.168.0.123 --password 6821 --timeout 15 RENAMED_MONITOR",
 		"Execute \"RENAMED_MONITOR\" command on 192.168.0.123:6821 with 15 sec timeout",
 	)
 
 	info.AddExample(
-		"-p 12345 -a MySuppaPassword1234 RENAMED_MONITOR",
+		"-P 12345 -a MySuppaPassword1234 RENAMED_MONITOR",
 		"Execute \"RENAMED_MONITOR\" command on 127.0.0.1:12345 with password \"MySuppaPassword1234\"",
 	)
 

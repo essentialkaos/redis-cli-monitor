@@ -49,21 +49,23 @@ Usage: redis-cli-monitor {options} command-name
 
 Options
 
-  --host, -H ip/host         Server hostname (127.0.0.1 by default)
-  --port, -P port            Server port (6379 by default)
+  --host, -h ip/host         Server hostname (127.0.0.1 by default)
+  --port, -p port            Server port (6379 by default)
+  --raw, -r                  Print raw data
   --password, -a password    Password to use when connecting to the server
   --timeout, -t 1-300        Connection timeout in seconds (3 by default)
   --no-color, -nc            Disable colors in output
-  --help, -h                 Show this help message
+  --help                     Show this help message
   --version, -v              Show version
 
 Examples
 
-  redis-cli-monitor --host 192.168.0.123 --password 6821 --timeout 15 RENAMED_MONITOR
+  redis-cli-monitor --host 192.168.0.123 --port 6821 --timeout 15 RENAMED_MONITOR
   Execute "RENAMED_MONITOR" command on 192.168.0.123:6821 with 15 sec timeout
 
-  redis-cli-monitor -P 12345 -a MySuppaPassword1234 RENAMED_MONITOR
-  Execute "RENAMED_MONITOR" command on 127.0.0.1:12345 with password "MySuppaPassword1234"
+  redis-cli-monitor -p 6378 -a MySuppaPassword1234 RENAMED_MONITOR
+  Execute "RENAMED_MONITOR" command on 127.0.0.1:6378 with password "MySuppaPassword1234"
+
 
 ```
 

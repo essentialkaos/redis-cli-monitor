@@ -173,14 +173,13 @@ func monitor(cmd string) {
 // formatCommand format command and add color codes
 func formatCommand(cmd string) {
 	sec, _ := strconv.ParseInt(cmd[:10], 10, 64)
-	nsec, _ := strconv.ParseInt(cmd[11:17], 10, 64)
 
 	infoStart := strings.IndexRune(cmd, '[')
 	infoEnd := strings.IndexRune(cmd, ']')
 
 	fmtc.Printf(
-		"{s}%s.%d{!} {s-}%s{!} %s",
-		timeutil.Format(time.Unix(sec, 0), "%Y/%m/%d %H:%M:%S"), nsec,
+		"{s}%s.%s{!} {s-}%s{!} %s",
+		timeutil.Format(time.Unix(sec, 0), "%Y/%m/%d %H:%M:%S"), cmd[11:17],
 		cmd[infoStart:infoEnd+1],
 		cmd[infoEnd+2:],
 	)

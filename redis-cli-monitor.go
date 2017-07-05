@@ -28,7 +28,7 @@ import (
 
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "2.0.0"
+	VER  = "2.0.1"
 	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
@@ -155,6 +155,10 @@ func monitor(cmd string) {
 		if len(str) > 0 {
 			if str == "+OK\r\n" {
 				continue
+			}
+
+			if strings.HasPrefix(str, "-ERR ") {
+				printErrorAndExit("Redis return error message: " + strings.TrimRight(str[1:], "\r\n"))
 			}
 
 			if useRawOutput {

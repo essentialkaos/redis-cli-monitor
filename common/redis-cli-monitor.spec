@@ -10,7 +10,7 @@
 
 Summary:         Tiny Redis client for renamed MONITOR commands
 Name:            redis-cli-monitor
-Version:         2.0.0
+Version:         2.0.1
 Release:         0%{?dist}
 Group:           Applications/System
 License:         EKOL
@@ -57,6 +57,9 @@ rm -rf %{buildroot}
 ###############################################################################
 
 %changelog
+* Thu Jul 06 2017 Anton Novojilov <andy@essentialkaos.com> - 2.0.1-0
+- Fixed bug with handling redis errors
+
 * Sun Jul 02 2017 Anton Novojilov <andy@essentialkaos.com> - 2.0.0-0
 - Added colors and timestamp formatting
 - Added option for enabling raw output

@@ -76,7 +76,7 @@ Examples
 ### Build Status
 
 | Branch | Status |
-|------------|--------|
+|--------|--------|
 | `master` | [![Build Status](https://travis-ci.org/essentialkaos/redis-cli-monitor.svg?branch=master)](https://travis-ci.org/essentialkaos/redis-cli-monitor) |
 | `develop` | [![Build Status](https://travis-ci.org/essentialkaos/redis-cli-monitor.svg?branch=develop)](https://travis-ci.org/essentialkaos/redis-cli-monitor) |
 

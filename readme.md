@@ -1,4 +1,4 @@
-## Redis CLI Monitor [![Build Status](https://travis-ci.org/essentialkaos/redis-cli-monitor.svg?branch=master)](https://travis-ci.org/essentialkaos/redis-cli-monitor) [![Go Report Card](https://goreportcard.com/badge/github.com/essentialkaos/redis-cli-monitor)](https://goreportcard.com/report/github.com/essentialkaos/redis-cli-monitor) [![License](https://gh.kaos.io/ekol.svg)](https://essentialkaos.com/ekol)
+## Redis CLI Monitor [![Build Status](https://travis-ci.org/essentialkaos/redis-cli-monitor.svg?branch=master)](https://travis-ci.org/essentialkaos/redis-cli-monitor) [![Go Report Card](https://goreportcard.com/badge/github.com/essentialkaos/redis-cli-monitor)](https://goreportcard.com/report/github.com/essentialkaos/redis-cli-monitor) [![codebeat badge](https://codebeat.co/badges/9503a6f8-c9da-4057-ae44-b079686bcc13)](https://codebeat.co/projects/github-com-essentialkaos-redis-cli-monitor-master) [![License](https://gh.kaos.io/ekol.svg)](https://essentialkaos.com/ekol)
 
 Tiny Redis client for renamed `MONITOR` commands.
 

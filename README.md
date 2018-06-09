@@ -79,7 +79,6 @@ Examples
   redis-cli-monitor -p 6378 -a MySuppaPassword1234 RENAMED_MONITOR
   Execute "RENAMED_MONITOR" command on 127.0.0.1:6378 with password "MySuppaPassword1234"
 
-
 ```
 
 ### Build Status

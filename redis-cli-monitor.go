@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"pkg.re/essentialkaos/ek.v9/timeutil"
 	"strconv"
 	"strings"
 	"time"
@@ -21,6 +20,7 @@ import (
 	"pkg.re/essentialkaos/ek.v9/fmtc"
 	"pkg.re/essentialkaos/ek.v9/fsutil"
 	"pkg.re/essentialkaos/ek.v9/options"
+	"pkg.re/essentialkaos/ek.v9/timeutil"
 	"pkg.re/essentialkaos/ek.v9/usage"
 )
 
@@ -28,7 +28,7 @@ import (
 
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "2.0.1"
+	VER  = "2.0.2"
 	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
@@ -46,7 +46,7 @@ const (
 // ////////////////////////////////////////////////////////////////////////////////// //
 
 var optMap = options.Map{
-	OPT_HOST:     {Value: "127.0.0.1"},
+	OPT_HOST:     {Type: options.MIXED, Value: "127.0.0.1"},
 	OPT_PORT:     {Value: "6379"},
 	OPT_TIMEOUT:  {Type: options.INT, Value: 3, Min: 1, Max: 300},
 	OPT_RAW:      {Type: options.BOOL},
@@ -81,7 +81,7 @@ func main() {
 		return
 	}
 
-	if options.GetB(OPT_HELP) || len(args) == 0 {
+	if options.GetB(OPT_HELP) || options.GetS(OPT_HOST) == "true" || len(args) == 0 {
 		showUsage()
 		return
 	}

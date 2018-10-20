@@ -10,7 +10,7 @@
 
 Summary:         Tiny Redis client for renamed MONITOR commands
 Name:            redis-cli-monitor
-Version:         2.0.1
+Version:         2.0.2
 Release:         0%{?dist}
 Group:           Applications/System
 License:         EKOL
@@ -20,7 +20,7 @@ Source0:         https://source.kaos.io/%{name}/%{name}-%{version}.tar.bz2
 
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:   golang >= 1.8
+BuildRequires:   golang >= 1.11
 
 Provides:        %{name} = %{version}-%{release}
 
@@ -57,8 +57,11 @@ rm -rf %{buildroot}
 ################################################################################
 
 %changelog
+* Sat Oct 20 2018 Anton Novojilov <andy@essentialkaos.com> - 2.0.2-0
+- Show usage info if '-h' passed without any value
+
 * Thu Jul 06 2017 Anton Novojilov <andy@essentialkaos.com> - 2.0.1-0
-- Fixed bug with handling redis errors
+- Fixed bug with handling Redis errors
 
 * Sun Jul 02 2017 Anton Novojilov <andy@essentialkaos.com> - 2.0.0-0
 - Added colors and timestamp formatting

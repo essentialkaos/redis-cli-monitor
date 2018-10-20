@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"pkg.re/essentialkaos/ek.v9/timeutil"
 	"strconv"
 	"strings"
 	"time"
@@ -21,6 +20,7 @@ import (
 	"pkg.re/essentialkaos/ek.v9/fmtc"
 	"pkg.re/essentialkaos/ek.v9/fsutil"
 	"pkg.re/essentialkaos/ek.v9/options"
+	"pkg.re/essentialkaos/ek.v9/timeutil"
 	"pkg.re/essentialkaos/ek.v9/usage"
 )
 

@@ -20,7 +20,7 @@ Source0:         https://source.kaos.io/%{name}/%{name}-%{version}.tar.bz2
 
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:   golang >= 1.8
+BuildRequires:   golang >= 1.11
 
 Provides:        %{name} = %{version}-%{release}
 

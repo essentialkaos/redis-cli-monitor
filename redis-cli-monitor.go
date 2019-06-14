@@ -2,7 +2,7 @@ package main
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                    //
-//                     Copyright (c) 2009-2018 ESSENTIAL KAOS                         //
+//                     Copyright (c) 2009-2019 ESSENTIAL KAOS                         //
 //        Essential Kaos Open Source License <https://essentialkaos.com/ekol>         //
 //                                                                                    //
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -16,22 +16,27 @@ import (
 	"strings"
 	"time"
 
-	"pkg.re/essentialkaos/ek.v9/env"
-	"pkg.re/essentialkaos/ek.v9/fmtc"
-	"pkg.re/essentialkaos/ek.v9/fsutil"
-	"pkg.re/essentialkaos/ek.v9/options"
-	"pkg.re/essentialkaos/ek.v9/timeutil"
-	"pkg.re/essentialkaos/ek.v9/usage"
+	"pkg.re/essentialkaos/ek.v10/env"
+	"pkg.re/essentialkaos/ek.v10/fmtc"
+	"pkg.re/essentialkaos/ek.v10/fsutil"
+	"pkg.re/essentialkaos/ek.v10/options"
+	"pkg.re/essentialkaos/ek.v10/timeutil"
+	"pkg.re/essentialkaos/ek.v10/usage"
+	"pkg.re/essentialkaos/ek.v10/usage/completion/bash"
+	"pkg.re/essentialkaos/ek.v10/usage/completion/fish"
+	"pkg.re/essentialkaos/ek.v10/usage/completion/zsh"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
+// Application info
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "2.0.2"
+	VER  = "2.1.0"
 	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
+// Supported command line options
 const (
 	OPT_HOST     = "h:host"
 	OPT_PORT     = "p:port"
@@ -41,6 +46,8 @@ const (
 	OPT_NO_COLOR = "nc:no-color"
 	OPT_HELP     = "help"
 	OPT_VER      = "v:version"
+
+	OPT_COMPLETION = "completion"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -54,6 +61,8 @@ var optMap = options.Map{
 	OPT_NO_COLOR: {Type: options.BOOL},
 	OPT_HELP:     {Type: options.BOOL, Alias: "u:usage"},
 	OPT_VER:      {Type: options.BOOL, Alias: "ver"},
+
+	OPT_COMPLETION: {},
 }
 
 var conn net.Conn
@@ -72,6 +81,10 @@ func main() {
 		}
 
 		os.Exit(1)
+	}
+
+	if options.Has(OPT_COMPLETION) {
+		genCompletion()
 	}
 
 	configureUI()
@@ -120,7 +133,7 @@ func configureUI() {
 	}
 }
 
-// connectToRedis connect to Redis instance
+// connectToRedis connects to Redis instance
 func connectToRedis() {
 	var err error
 
@@ -144,7 +157,7 @@ func connectToRedis() {
 	}
 }
 
-// monitor start outout commands in monitor
+// monitor starts outout commands in monitor
 func monitor(cmd string) {
 	buf := bufio.NewReader(conn)
 	conn.Write([]byte(cmd + "\r\n"))
@@ -174,7 +187,7 @@ func monitor(cmd string) {
 	}
 }
 
-// formatCommand format command and add color codes
+// formatCommand formats command and add color codes
 func formatCommand(cmd string) {
 	sec, _ := strconv.ParseInt(cmd[:10], 10, 64)
 
@@ -202,8 +215,13 @@ func printErrorAndExit(f string, a ...interface{}) {
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
-// showUsage print usage info
+// showUsage prints usage info
 func showUsage() {
+	genUsage().Render()
+}
+
+// genUsage generates usage info
+func genUsage() *usage.Info {
 	info := usage.NewInfo("", "command-name")
 
 	info.AddOption(OPT_HOST, "Server hostname {s-}(127.0.0.1 by default){!}", "ip/host")
@@ -225,7 +243,25 @@ func showUsage() {
 		"Execute \"RENAMED_MONITOR\" command on 127.0.0.1:6378 with password \"MySuppaPassword1234\"",
 	)
 
-	info.Render()
+	return info
+}
+
+// genCompletion generates completion for different shells
+func genCompletion() {
+	info := genUsage()
+
+	switch options.GetS(OPT_COMPLETION) {
+	case "bash":
+		fmt.Printf(bash.Generate(info, "redis-cli-monitor"))
+	case "fish":
+		fmt.Printf(fish.Generate(info, "redis-cli-monitor"))
+	case "zsh":
+		fmt.Printf(zsh.Generate(info, optMap, "redis-cli-monitor"))
+	default:
+		os.Exit(1)
+	}
+
+	os.Exit(0)
 }
 
 // showAbout print info about version

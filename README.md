@@ -25,7 +25,7 @@ Before the initial install allows git to use redirects for [pkg.re](https://gith
 git config --global http.https://pkg.re.followRedirects true
 ```
 
-To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.6+ workspace ([instructions](https://golang.org/doc/install)), then:
+To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.11+ workspace ([instructions](https://golang.org/doc/install)), then:
 
 ```
 go get github.com/essentialkaos/redis-cli-monitor
@@ -54,6 +54,12 @@ go get -u github.com/essentialkaos/redis-cli-monitor
 #### Prebuilt binaries
 
 You can download prebuilt binaries for Linux and OS X from [EK Apps Repository](https://apps.kaos.st/redis-cli-monitor/latest).
+
+To install the latest prebuilt version, do:
+
+```bash
+bash <(curl -fsSL https://apps.kaos.st/get) redis-cli-monitor
+```
 
 ### Usage
 

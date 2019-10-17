@@ -16,15 +16,15 @@ import (
 	"strings"
 	"time"
 
-	"pkg.re/essentialkaos/ek.v10/env"
-	"pkg.re/essentialkaos/ek.v10/fmtc"
-	"pkg.re/essentialkaos/ek.v10/fsutil"
-	"pkg.re/essentialkaos/ek.v10/options"
-	"pkg.re/essentialkaos/ek.v10/timeutil"
-	"pkg.re/essentialkaos/ek.v10/usage"
-	"pkg.re/essentialkaos/ek.v10/usage/completion/bash"
-	"pkg.re/essentialkaos/ek.v10/usage/completion/fish"
-	"pkg.re/essentialkaos/ek.v10/usage/completion/zsh"
+	"pkg.re/essentialkaos/ek.v11/env"
+	"pkg.re/essentialkaos/ek.v11/fmtc"
+	"pkg.re/essentialkaos/ek.v11/fsutil"
+	"pkg.re/essentialkaos/ek.v11/options"
+	"pkg.re/essentialkaos/ek.v11/timeutil"
+	"pkg.re/essentialkaos/ek.v11/usage"
+	"pkg.re/essentialkaos/ek.v11/usage/completion/bash"
+	"pkg.re/essentialkaos/ek.v11/usage/completion/fish"
+	"pkg.re/essentialkaos/ek.v11/usage/completion/zsh"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -32,7 +32,7 @@ import (
 // Application info
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "2.1.0"
+	VER  = "2.1.1"
 	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
@@ -66,7 +66,6 @@ var optMap = options.Map{
 }
 
 var conn net.Conn
-
 var useRawOutput bool
 
 // ////////////////////////////////////////////////////////////////////////////////// //

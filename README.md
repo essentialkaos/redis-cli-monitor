@@ -1,13 +1,15 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/redis-cli-monitor.svg"/></a></p>
 
-<p align="center"><a href="#usage-demo">Usage demo</a> • <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#license">License</a></p>
-
 <p align="center">
   <a href="https://travis-ci.com/essentialkaos/redis-cli-monitor"><img src="https://travis-ci.com/essentialkaos/redis-cli-monitor.svg"></a>
   <a href="https://goreportcard.com/report/github.com/essentialkaos/redis-cli-monitor"><img src="https://goreportcard.com/badge/github.com/essentialkaos/redis-cli-monitor"></a>
   <a href="https://codebeat.co/projects/github-com-essentialkaos-redis-cli-monitor-master"><img alt="codebeat badge" src="https://codebeat.co/badges/9503a6f8-c9da-4057-ae44-b079686bcc13" /></a>
   <a href="https://essentialkaos.com/ekol"><img src="https://gh.kaos.st/ekol.svg"></a>
 </p>
+
+<p align="center"><a href="#usage-demo">Usage demo</a> • <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#license">License</a></p>
+
+<br/>
 
 Tiny Redis client for renamed `MONITOR` commands.
 
@@ -25,7 +27,7 @@ Before the initial install allows git to use redirects for [pkg.re](https://gith
 git config --global http.https://pkg.re.followRedirects true
 ```
 
-To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.11+ workspace ([instructions](https://golang.org/doc/install)), then:
+To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.12+ workspace ([instructions](https://golang.org/doc/install)), then:
 
 ```
 go get github.com/essentialkaos/redis-cli-monitor
@@ -37,18 +39,11 @@ If you want to update `redis-cli-monitor` to latest stable release, do:
 go get -u github.com/essentialkaos/redis-cli-monitor
 ```
 
-#### From ESSENTIAL KAOS Public repo for RHEL6/CentOS6
+#### From [ESSENTIAL KAOS Public Repository](https://yum.kaos.st)
 
 ```bash
-[sudo] yum install -y https://yum.kaos.st/kaos-repo-latest.el6.noarch.rpm
-[sudo] yum install redis-cli-monitor
-```
-
-#### From ESSENTIAL KAOS Public repo for RHEL7/CentOS7
-
-```bash
-[sudo] yum install -y https://yum.kaos.st/kaos-repo-latest.el7.noarch.rpm
-[sudo] yum install redis-cli-monitor
+sudo yum install -y https://yum.kaos.st/get/$(uname -r).rpm
+sudo yum install redis-cli-monitor
 ```
 
 #### Prebuilt binaries

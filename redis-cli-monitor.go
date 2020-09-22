@@ -16,15 +16,15 @@ import (
 	"strings"
 	"time"
 
-	"pkg.re/essentialkaos/ek.v11/env"
-	"pkg.re/essentialkaos/ek.v11/fmtc"
-	"pkg.re/essentialkaos/ek.v11/fsutil"
-	"pkg.re/essentialkaos/ek.v11/options"
-	"pkg.re/essentialkaos/ek.v11/timeutil"
-	"pkg.re/essentialkaos/ek.v11/usage"
-	"pkg.re/essentialkaos/ek.v11/usage/completion/bash"
-	"pkg.re/essentialkaos/ek.v11/usage/completion/fish"
-	"pkg.re/essentialkaos/ek.v11/usage/completion/zsh"
+	"pkg.re/essentialkaos/ek.v12/env"
+	"pkg.re/essentialkaos/ek.v12/fmtc"
+	"pkg.re/essentialkaos/ek.v12/fsutil"
+	"pkg.re/essentialkaos/ek.v12/options"
+	"pkg.re/essentialkaos/ek.v12/timeutil"
+	"pkg.re/essentialkaos/ek.v12/usage"
+	"pkg.re/essentialkaos/ek.v12/usage/completion/bash"
+	"pkg.re/essentialkaos/ek.v12/usage/completion/fish"
+	"pkg.re/essentialkaos/ek.v12/usage/completion/zsh"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -32,7 +32,7 @@ import (
 // Application info
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "2.1.1"
+	VER  = "2.2.0"
 	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
@@ -40,6 +40,7 @@ const (
 const (
 	OPT_HOST     = "h:host"
 	OPT_PORT     = "p:port"
+	OPT_DB       = "n:db"
 	OPT_RAW      = "r:raw"
 	OPT_AUTH     = "a:password"
 	OPT_TIMEOUT  = "t:timeout"
@@ -55,6 +56,7 @@ const (
 var optMap = options.Map{
 	OPT_HOST:     {Type: options.MIXED, Value: "127.0.0.1"},
 	OPT_PORT:     {Value: "6379"},
+	OPT_DB:       {Type: options.INT, Min: 0, Max: 999},
 	OPT_TIMEOUT:  {Type: options.INT, Value: 3, Min: 1, Max: 300},
 	OPT_RAW:      {Type: options.BOOL},
 	OPT_AUTH:     {},
@@ -67,6 +69,7 @@ var optMap = options.Map{
 
 var conn net.Conn
 var useRawOutput bool
+var dbNum string
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 
@@ -96,6 +99,10 @@ func main() {
 	if options.GetB(OPT_HELP) || options.GetS(OPT_HOST) == "true" || len(args) == 0 {
 		showUsage()
 		return
+	}
+
+	if options.Has(OPT_DB) {
+		dbNum = options.GetS(OPT_DB)
 	}
 
 	connectToRedis()
@@ -159,6 +166,7 @@ func connectToRedis() {
 // monitor starts outout commands in monitor
 func monitor(cmd string) {
 	buf := bufio.NewReader(conn)
+
 	conn.Write([]byte(cmd + "\r\n"))
 
 	for {
@@ -171,6 +179,10 @@ func monitor(cmd string) {
 
 			if strings.HasPrefix(str, "-ERR ") {
 				printErrorAndExit("Redis return error message: " + strings.TrimRight(str[1:], "\r\n"))
+			}
+
+			if dbNum != "" && !isMatchDB(str[1:]) {
+				continue
 			}
 
 			if useRawOutput {
@@ -193,12 +205,35 @@ func formatCommand(cmd string) {
 	infoStart := strings.IndexRune(cmd, '[')
 	infoEnd := strings.IndexRune(cmd, ']')
 
+	if infoStart == -1 || infoEnd == -1 {
+		return
+	}
+
 	fmtc.Printf(
-		"{s}%s.%s{!} {s-}%s{!} %s",
+		"{s-}%s.%s{!} {s}%-26s{!} %s",
 		timeutil.Format(time.Unix(sec, 0), "%Y/%m/%d %H:%M:%S"), cmd[11:17],
 		cmd[infoStart:infoEnd+1],
 		cmd[infoEnd+2:],
 	)
+}
+
+// isMatchDB returns true if given command executed over DB with given number
+func isMatchDB(cmd string) bool {
+	start := strings.IndexRune(cmd, '[')
+
+	if start == -1 {
+		return false
+	}
+
+	end := strings.IndexRune(cmd[start:], ' ')
+
+	if end == -1 {
+		return false
+	}
+
+	end += start
+
+	return dbNum == cmd[start+1:end]
 }
 
 // printError prints error message to console
@@ -225,6 +260,7 @@ func genUsage() *usage.Info {
 
 	info.AddOption(OPT_HOST, "Server hostname {s-}(127.0.0.1 by default){!}", "ip/host")
 	info.AddOption(OPT_PORT, "Server port {s-}(6379 by default){!}", "port")
+	info.AddOption(OPT_DB, "Database number", "db")
 	info.AddOption(OPT_RAW, "Print raw data")
 	info.AddOption(OPT_AUTH, "Password to use when connecting to the server", "password")
 	info.AddOption(OPT_TIMEOUT, "Connection timeout in seconds {s-}(3 by default){!}", "1-300")

@@ -10,17 +10,17 @@
 
 Summary:         Tiny Redis client for renamed MONITOR commands
 Name:            redis-cli-monitor
-Version:         2.1.1
+Version:         2.2.0
 Release:         0%{?dist}
 Group:           Applications/System
 License:         Apache License, Version 2.0
-URL:             https://github.com/essentialkaos/redis-cli-monitor
+URL:             https://kaos.sh/redis-cli-monitor
 
 Source0:         https://source.kaos.st/%{name}/%{name}-%{version}.tar.bz2
 
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:   golang >= 1.13
+BuildRequires:   golang >= 1.14
 
 Provides:        %{name} = %{version}-%{release}
 
@@ -85,6 +85,10 @@ fi
 ################################################################################
 
 %changelog
+* Tue Sep 22 2020 Anton Novojilov <andy@essentialkaos.com> - 2.2.0-0
+- Added option for filtering data by DB number
+- ek package updated to the latest stable version
+
 * Thu Oct 17 2019 Anton Novojilov <andy@essentialkaos.com> - 2.1.1-0
 - ek package updated to the latest stable version
 

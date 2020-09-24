@@ -28,7 +28,7 @@ Before the initial install allows git to use redirects for [pkg.re](https://gith
 git config --global http.https://pkg.re.followRedirects true
 ```
 
-To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.12+ workspace ([instructions](https://golang.org/doc/install)), then:
+To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.14+ workspace ([instructions](https://golang.org/doc/install)), then:
 
 ```
 go get github.com/essentialkaos/redis-cli-monitor
@@ -66,6 +66,7 @@ Options
 
   --host, -h ip/host         Server hostname (127.0.0.1 by default)
   --port, -p port            Server port (6379 by default)
+  --db, -n db                Database number
   --raw, -r                  Print raw data
   --password, -a password    Password to use when connecting to the server
   --timeout, -t 1-300        Connection timeout in seconds (3 by default)

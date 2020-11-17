@@ -1,7 +1,7 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/redis-cli-monitor.svg"/></a></p>
 
 <p align="center">
-  <a href="https://travis-ci.com/essentialkaos/redis-cli-monitor"><img src="https://travis-ci.com/essentialkaos/redis-cli-monitor.svg"></a>
+  <a href="https://github.com/essentialkaos/redis-cli-monitor/actions"><img src="https://github.com/essentialkaos/redis-cli-monitor/workflows/CI/badge.svg" alt="GitHub Actions Status" /></a>
   <a href="https://github.com/essentialkaos/redis-cli-monitor/actions?query=workflow%3ACodeQL"><img src="https://github.com/essentialkaos/redis-cli-monitor/workflows/CodeQL/badge.svg" /></a>
   <a href="https://goreportcard.com/report/github.com/essentialkaos/redis-cli-monitor"><img src="https://goreportcard.com/badge/github.com/essentialkaos/redis-cli-monitor"></a>
   <a href="https://codebeat.co/projects/github-com-essentialkaos-redis-cli-monitor-master"><img alt="codebeat badge" src="https://codebeat.co/badges/9503a6f8-c9da-4057-ae44-b079686bcc13" /></a>
@@ -21,12 +21,6 @@ Tiny Redis client for renamed `MONITOR` commands.
 ### Installation
 
 #### From source
-
-Before the initial install allows git to use redirects for [pkg.re](https://github.com/essentialkaos/pkgre) service (reason why you should do this described [here](https://github.com/essentialkaos/pkgre#git-support)):
-
-```
-git config --global http.https://pkg.re.followRedirects true
-```
 
 To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.14+ workspace ([instructions](https://golang.org/doc/install)), then:
 
@@ -88,8 +82,8 @@ Examples
 
 | Branch | Status |
 |--------|--------|
-| `master` | [![Build Status](https://travis-ci.com/essentialkaos/redis-cli-monitor.svg?branch=master)](https://travis-ci.com/essentialkaos/redis-cli-monitor) |
-| `develop` | [![Build Status](https://travis-ci.com/essentialkaos/redis-cli-monitor.svg?branch=develop)](https://travis-ci.com/essentialkaos/redis-cli-monitor) |
+| `master` | [![CI](https://github.com/essentialkaos/redis-cli-monitor/workflows/CI/badge.svg?branch=master)](https://github.com/essentialkaos/redis-cli-monitor/actions) |
+| `develop` | [![CI](https://github.com/essentialkaos/redis-cli-monitor/workflows/CI/badge.svg?branch=develop)](https://github.com/essentialkaos/redis-cli-monitor/actions) |
 
 ### License
 

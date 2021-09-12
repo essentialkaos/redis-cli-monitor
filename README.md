@@ -1,10 +1,10 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/redis-cli-monitor.svg"/></a></p>
 
 <p align="center">
-  <a href="https://github.com/essentialkaos/redis-cli-monitor/actions"><img src="https://github.com/essentialkaos/redis-cli-monitor/workflows/CI/badge.svg" alt="GitHub Actions Status" /></a>
-  <a href="https://github.com/essentialkaos/redis-cli-monitor/actions?query=workflow%3ACodeQL"><img src="https://github.com/essentialkaos/redis-cli-monitor/workflows/CodeQL/badge.svg" /></a>
-  <a href="https://goreportcard.com/report/github.com/essentialkaos/redis-cli-monitor"><img src="https://goreportcard.com/badge/github.com/essentialkaos/redis-cli-monitor"></a>
-  <a href="https://codebeat.co/projects/github-com-essentialkaos-redis-cli-monitor-master"><img alt="codebeat badge" src="https://codebeat.co/badges/9503a6f8-c9da-4057-ae44-b079686bcc13" /></a>
+  <a href="https://kaos.sh/w/redis-cli-monitor/ci"><img src="https://kaos.sh/w/redis-cli-monitor/ci.svg" alt="GitHub Actions CI Status" /></a>
+  <a href="https://kaos.sh/r/redis-cli-monitor"><img src="https://kaos.sh/r/redis-cli-monitor.svg" alt="GoReportCard" /></a>
+  <a href="https://kaos.sh/b/redis-cli-monitor"><img src="https://kaos.sh/b/9503a6f8-c9da-4057-ae44-b079686bcc13.svg" alt="codebeat badge" /></a>
+  <a href="https://kaos.sh/w/redis-cli-monitor/codeql"><img src="https://kaos.sh/w/redis-cli-monitor/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
   <a href="#license"><img src="https://gh.kaos.st/apache2.svg"></a>
 </p>
 
@@ -22,7 +22,7 @@ Tiny Redis client for renamed `MONITOR` commands.
 
 #### From source
 
-To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.14+ workspace ([instructions](https://golang.org/doc/install)), then:
+To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.16+ workspace ([instructions](https://golang.org/doc/install)), then:
 
 ```
 go get github.com/essentialkaos/redis-cli-monitor
@@ -82,8 +82,8 @@ Examples
 
 | Branch | Status |
 |--------|--------|
-| `master` | [![CI](https://github.com/essentialkaos/redis-cli-monitor/workflows/CI/badge.svg?branch=master)](https://github.com/essentialkaos/redis-cli-monitor/actions) |
-| `develop` | [![CI](https://github.com/essentialkaos/redis-cli-monitor/workflows/CI/badge.svg?branch=develop)](https://github.com/essentialkaos/redis-cli-monitor/actions) |
+| `master` | [![CI](https://kaos.sh/w/redis-cli-monitor/ci.svg?branch=master)](https://kaos.sh/w/redis-cli-monitor/ci?query=branch:master) |
+| `develop` | [![CI](https://kaos.sh/w/redis-cli-monitor/ci.svg?branch=master)](https://kaos.sh/w/redis-cli-monitor/ci?query=branch:develop) |
 
 ### License
 

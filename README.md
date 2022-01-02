@@ -43,7 +43,7 @@ sudo yum install redis-cli-monitor
 
 #### Prebuilt binaries
 
-You can download prebuilt binaries for Linux and OS X from [EK Apps Repository](https://apps.kaos.st/redis-cli-monitor/latest).
+You can download prebuilt binaries for Linux and macOS from [EK Apps Repository](https://apps.kaos.st/redis-cli-monitor/latest).
 
 To install the latest prebuilt version, do:
 

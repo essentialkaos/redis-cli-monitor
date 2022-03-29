@@ -10,7 +10,7 @@
 
 Summary:         Tiny Redis client for renamed MONITOR commands
 Name:            redis-cli-monitor
-Version:         2.2.0
+Version:         2.2.1
 Release:         0%{?dist}
 Group:           Applications/System
 License:         Apache License, Version 2.0
@@ -20,7 +20,7 @@ Source0:         https://source.kaos.st/%{name}/%{name}-%{version}.tar.bz2
 
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:   golang >= 1.14
+BuildRequires:   golang >= 1.17
 
 Provides:        %{name} = %{version}-%{release}
 
@@ -85,6 +85,11 @@ fi
 ################################################################################
 
 %changelog
+* Wed Mar 30 2022 Anton Novojilov <andy@essentialkaos.com> - 2.2.1-0
+- Removed pkg.re usage
+- Added module info
+- Added Dependabot configuration
+
 * Tue Sep 22 2020 Anton Novojilov <andy@essentialkaos.com> - 2.2.0-0
 - Added option for filtering data by DB number
 - ek package updated to the latest stable version

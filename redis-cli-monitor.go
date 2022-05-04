@@ -32,7 +32,7 @@ import (
 // Application info
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "2.2.1"
+	VER  = "2.2.2"
 	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
@@ -106,7 +106,7 @@ func main() {
 	}
 
 	connectToRedis()
-	monitor(args[0])
+	monitor(args.Get(0).String())
 }
 
 // configureUI configure user interface

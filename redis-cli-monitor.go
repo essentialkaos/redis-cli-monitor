@@ -163,7 +163,7 @@ func connectToRedis() {
 	}
 }
 
-// monitor starts outout commands in monitor
+// monitor starts output commands in monitor
 func monitor(cmd string) {
 	buf := bufio.NewReader(conn)
 

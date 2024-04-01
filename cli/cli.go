@@ -316,6 +316,8 @@ func printMan() {
 func genUsage() *usage.Info {
 	info := usage.NewInfo("", "command-name")
 
+	info.AppNameColorTag = colorTagApp
+
 	info.AddOption(OPT_HOST, "Server hostname {s-}(127.0.0.1 by default){!}", "ip/host")
 	info.AddOption(OPT_PORT, "Server port {s-}(6379 by default){!}", "port")
 	info.AddOption(OPT_DB, "Database number", "db")

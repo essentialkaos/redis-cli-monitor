@@ -47,30 +47,7 @@ bash <(curl -fsSL https://apps.kaos.st/get) redis-cli-monitor
 
 ### Usage
 
-```
-Usage: redis-cli-monitor {options} command-name
-
-Options
-
-  --host, -h ip/host         Server hostname (127.0.0.1 by default)
-  --port, -p port            Server port (6379 by default)
-  --db, -n db                Database number
-  --raw, -r                  Print raw data
-  --password, -a password    Password to use when connecting to the server
-  --timeout, -t 1-300        Connection timeout in seconds (3 by default)
-  --no-color, -nc            Disable colors in output
-  --help                     Show this help message
-  --version, -v              Show version
-
-Examples
-
-  redis-cli-monitor --host 192.168.0.123 --port 6821 --timeout 15 RENAMED_MONITOR
-  Execute "RENAMED_MONITOR" command on 192.168.0.123:6821 with 15 sec timeout
-
-  redis-cli-monitor -p 6378 -a MySuppaPassword1234 RENAMED_MONITOR
-  Execute "RENAMED_MONITOR" command on 127.0.0.1:6378 with password "MySuppaPassword1234"
-
-```
+<img src=".github/images/usage.svg" />
 
 ### Build Status
 

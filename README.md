@@ -8,7 +8,7 @@
   <a href="#license"><img src=".github/images/license.svg"/></a>
 </p>
 
-<p align="center"><a href="#usage-demo">Usage demo</a> • <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#license">License</a></p>
+<p align="center"><a href="#usage-demo">Usage demo</a> • <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#ci-status">CI Status</a> • <a href="#license">License</a></p>
 
 <br/>
 
@@ -22,7 +22,7 @@ Tiny Redis client for renamed `MONITOR` commands.
 
 #### From source
 
-To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.18+ workspace ([instructions](https://go.dev/doc/install)), then:
+To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.20+ workspace ([instructions](https://go.dev/doc/install)), then:
 
 ```
 go install github.com/essentialkaos/redis-cli-monitor@latest
@@ -49,7 +49,7 @@ bash <(curl -fsSL https://apps.kaos.st/get) redis-cli-monitor
 
 <img src=".github/images/usage.svg" />
 
-### Build Status
+### CI Status
 
 | Branch | Status |
 |--------|--------|

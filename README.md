@@ -1,14 +1,14 @@
-<p align="center"><a href="#readme"><img src="https://gh.kaos.st/redis-cli-monitor.svg"/></a></p>
+<p align="center"><a href="#readme"><img src=".github/images/card.svg"/></a></p>
 
 <p align="center">
   <a href="https://kaos.sh/w/redis-cli-monitor/ci"><img src="https://kaos.sh/w/redis-cli-monitor/ci.svg" alt="GitHub Actions CI Status" /></a>
   <a href="https://kaos.sh/r/redis-cli-monitor"><img src="https://kaos.sh/r/redis-cli-monitor.svg" alt="GoReportCard" /></a>
   <a href="https://kaos.sh/b/redis-cli-monitor"><img src="https://kaos.sh/b/9503a6f8-c9da-4057-ae44-b079686bcc13.svg" alt="codebeat badge" /></a>
   <a href="https://kaos.sh/w/redis-cli-monitor/codeql"><img src="https://kaos.sh/w/redis-cli-monitor/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
-  <a href="#license"><img src="https://gh.kaos.st/apache2.svg"></a>
+  <a href="#license"><img src=".github/images/license.svg"/></a>
 </p>
 
-<p align="center"><a href="#usage-demo">Usage demo</a> • <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#license">License</a></p>
+<p align="center"><a href="#usage-demo">Usage demo</a> • <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#ci-status">CI Status</a> • <a href="#license">License</a></p>
 
 <br/>
 
@@ -22,16 +22,16 @@ Tiny Redis client for renamed `MONITOR` commands.
 
 #### From source
 
-To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.18+ workspace ([instructions](https://go.dev/doc/install)), then:
+To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.20+ workspace ([instructions](https://go.dev/doc/install)), then:
 
 ```
 go install github.com/essentialkaos/redis-cli-monitor@latest
 ```
 
-#### From [ESSENTIAL KAOS Public Repository](https://yum.kaos.st)
+#### From [ESSENTIAL KAOS Public Repository](https://kaos.sh/kaos-repo)
 
 ```bash
-sudo yum install -y https://yum.kaos.st/kaos-repo-latest.el$(grep 'CPE_NAME' /etc/os-release | tr -d '"' | cut -d':' -f5).noarch.rpm
+sudo yum install -y https://pkgs.kaos.st/kaos-repo-latest.el$(grep 'CPE_NAME' /etc/os-release | tr -d '"' | cut -d':' -f5).noarch.rpm
 sudo yum install redis-cli-monitor
 ```
 
@@ -47,32 +47,9 @@ bash <(curl -fsSL https://apps.kaos.st/get) redis-cli-monitor
 
 ### Usage
 
-```
-Usage: redis-cli-monitor {options} command-name
+<img src=".github/images/usage.svg" />
 
-Options
-
-  --host, -h ip/host         Server hostname (127.0.0.1 by default)
-  --port, -p port            Server port (6379 by default)
-  --db, -n db                Database number
-  --raw, -r                  Print raw data
-  --password, -a password    Password to use when connecting to the server
-  --timeout, -t 1-300        Connection timeout in seconds (3 by default)
-  --no-color, -nc            Disable colors in output
-  --help                     Show this help message
-  --version, -v              Show version
-
-Examples
-
-  redis-cli-monitor --host 192.168.0.123 --port 6821 --timeout 15 RENAMED_MONITOR
-  Execute "RENAMED_MONITOR" command on 192.168.0.123:6821 with 15 sec timeout
-
-  redis-cli-monitor -p 6378 -a MySuppaPassword1234 RENAMED_MONITOR
-  Execute "RENAMED_MONITOR" command on 127.0.0.1:6378 with password "MySuppaPassword1234"
-
-```
-
-### Build Status
+### CI Status
 
 | Branch | Status |
 |--------|--------|

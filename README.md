@@ -20,7 +20,7 @@ Tiny Redis client for renamed `MONITOR` commands.
 
 #### From source
 
-To build the `redis-cli-monitor` from scratch, make sure you have a working Go 1.20+ workspace ([instructions](https://go.dev/doc/install)), then:
+To build the `redis-cli-monitor` from scratch, make sure you have a working [Go 1.22+](https://github.com/essentialkaos/.github/blob/master/GO-VERSION-SUPPORT.md) workspace ([instructions](https://go.dev/doc/install)), then:
 
 ```
 go install github.com/essentialkaos/redis-cli-monitor@latest
@@ -29,8 +29,8 @@ go install github.com/essentialkaos/redis-cli-monitor@latest
 #### From [ESSENTIAL KAOS Public Repository](https://kaos.sh/kaos-repo)
 
 ```bash
-sudo yum install -y https://pkgs.kaos.st/kaos-repo-latest.el$(grep 'CPE_NAME' /etc/os-release | tr -d '"' | cut -d':' -f5).noarch.rpm
-sudo yum install redis-cli-monitor
+sudo dnf install -y https://pkgs.kaos.st/kaos-repo-latest.el$(grep 'CPE_NAME' /etc/os-release | tr -d '"' | cut -d':' -f5).noarch.rpm
+sudo dnf install redis-cli-monitor
 ```
 
 #### Prebuilt binaries

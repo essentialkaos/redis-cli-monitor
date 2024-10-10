@@ -2,7 +2,6 @@
 
 <p align="center">
   <a href="https://kaos.sh/w/redis-cli-monitor/ci"><img src="https://kaos.sh/w/redis-cli-monitor/ci.svg" alt="GitHub Actions CI Status" /></a>
-  <a href="https://kaos.sh/b/redis-cli-monitor"><img src="https://kaos.sh/b/9503a6f8-c9da-4057-ae44-b079686bcc13.svg" alt="codebeat badge" /></a>
   <a href="https://kaos.sh/w/redis-cli-monitor/codeql"><img src="https://kaos.sh/w/redis-cli-monitor/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
   <a href="#license"><img src=".github/images/license.svg"/></a>
 </p>

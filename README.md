@@ -10,7 +10,7 @@
 
 <br/>
 
-Tiny Redis client for renamed `MONITOR` commands.
+Tiny Valkey/Redis client for renamed `MONITOR` commands.
 
 ### Usage demo
 

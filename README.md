@@ -20,7 +20,7 @@ Tiny Redis client for renamed `MONITOR` commands.
 
 #### From source
 
-To build the `redis-cli-monitor` from scratch, make sure you have a working [Go 1.22+](https://github.com/essentialkaos/.github/blob/master/GO-VERSION-SUPPORT.md) workspace ([instructions](https://go.dev/doc/install)), then:
+To build the `redis-cli-monitor` from scratch, make sure you have a working [Go 1.23+](https://github.com/essentialkaos/.github/blob/master/GO-VERSION-SUPPORT.md) workspace ([instructions](https://go.dev/doc/install)), then:
 
 ```
 go install github.com/essentialkaos/redis-cli-monitor@latest

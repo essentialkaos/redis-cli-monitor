@@ -38,7 +38,7 @@ import (
 // Application info
 const (
 	APP  = "Redis CLI Monitor"
-	VER  = "2.2.3"
+	VER  = "2.2.4"
 	DESC = "Tiny Redis client for renamed MONITOR commands"
 )
 
@@ -99,7 +99,7 @@ func Run(gitRev string, gomod []byte) {
 
 	if !errs.IsEmpty() {
 		terminal.Error("Options parsing errors:")
-		terminal.Error(errs.String())
+		terminal.Error(errs.Error(" - "))
 		os.Exit(1)
 	}
 

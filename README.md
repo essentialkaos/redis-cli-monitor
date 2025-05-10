@@ -14,7 +14,7 @@ Tiny Valkey/Redis client for renamed `MONITOR` commands.
 
 ### Usage demo
 
-[![demo](https://gh.kaos.st/redis-cli-monitor-200.gif)](#usage-demo)
+[![demo](https://github.com/user-attachments/assets/25b9d66b-0a25-4448-b5ab-621b85ac22f0)](#usage-demo)
 
 ### Installation
 
